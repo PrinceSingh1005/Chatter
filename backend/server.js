@@ -1,15 +1,19 @@
 import express from 'express'
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+
+import connectToDb from './db/connectToDb.js';
+import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/authroutes.js'
 import messageRoutes from './routes/messageRoutes.js'
-import connectToDb from './db/connectToDb.js';
-import cookieParser from 'cookie-parser';
+import userRoutes from './routes/userRoutes.js'
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-dotenv.config();
+dotenv.config({path:'../.env'});
 
 app.use(express.json()); // Middleware to parse JSON request bodies
 
@@ -20,6 +24,7 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 app.use(cookieParser()); // Middleware to parse cookies
 app.use("/api/auth", authRoutes);
 app.use("/api/messages",messageRoutes);
+app.use("/api/users",userRoutes);
 
 app.listen(PORT, () => {
   connectToDb();
