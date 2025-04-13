@@ -5,6 +5,8 @@ import "./App.css";
 import Login from "./Pages/Login.jsx";
 import ChatLayout from "./Components/ChatLayout.jsx";
 import SignUp from "./Pages/SignUp.jsx";
+import Settings from "./Pages/Settings.jsx";
+import ProfileSetup from "./Pages/ProfileSetup.jsx";
 
 
 function App() {
@@ -18,6 +20,14 @@ function App() {
           path='/'
           element={authUser ? <ChatLayout /> : <Navigate to="/login" />}
         />
+        <Route
+          path='/settings' 
+          element = {<Settings />}
+           />
+        <Route
+          path='/profile' 
+          element={authUser ? <ProfileSetup /> : <Navigate to="/login" />}
+           />
 
         {/* Auth Routes - only accessible when NOT authenticated */}
         <Route

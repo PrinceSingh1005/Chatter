@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndCookies from "../utils/generateTokens.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const signup = async (req, res) => {
     try {
@@ -68,7 +69,6 @@ export const login = async (req, res) => {
 
         // 4. Compare passwords
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        console.log('Comparison result:', isPasswordCorrect);
 
         if (!isPasswordCorrect) {
             return res.status(401).json({ message: "Invalid credentials" });
@@ -104,4 +104,77 @@ export const logout = (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
     
+}
+
+
+export const update_profile = async (req, res) => {
+  try {
+    // Log Cloudinary config before upload
+    console.log('Cloudinary Config Before Upload:', {
+      cloud_name: cloudinary.config().cloud_name,
+      api_key: cloudinary.config().api_key,
+      api_secret: cloudinary.config().api_secret ? '****' : 'MISSING',
+    });
+
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "No image file provided",
+      });
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!allowedTypes.includes(req.file.mimetype)) {
+      return res.status(400).json({
+        success: false,
+        message: "Only JPG, PNG, or GIF images are allowed",
+      });
+    }
+
+    const maxSize = 2 * 1024 * 1024;
+    if (req.file.size > maxSize) {
+      return res.status(400).json({
+        success: false,
+        message: "Image size must be less than 2MB",
+      });
+    }
+
+    const uploadResult = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: 'profile-pictures' },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+      uploadStream.end(req.file.buffer);
+    });
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      { profilePicture: uploadResult.secure_url },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    res.status(200).json({
+      success: true,
+      user: updatedUser,
+      message: "Profile picture updated successfully",
+    });
+  } catch (error) {
+    console.error("Profile update error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to update profile picture",
+    });
+  }
+};
+export const checkAuth = (req, res) => {
+    try {
+        res.status(200).json(req.user);
+
+    } catch (error) {
+        console.error("Error in checkAuth:", error);
+        res.status(500).json({ message: "Internal Server error" });
+    }
 }

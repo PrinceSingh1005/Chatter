@@ -1,8 +1,15 @@
+import useConversation from '../../zustand/useConversation.js';
 
 const Conversation = ({conversation, lastIdx,emoji}) => {
+    const {selectedConversation, setSelectedConversation} = useConversation();
+
+    const isSelected = selectedConversation?._id === conversation._id;
     return (
         <>
-            <div className='flex gap-2 items-center hover:bg-sky-400 hover:bg-opacity-20 p-2 rounded-md cursor-pointer'>
+            <div className={`flex gap-2 items-center hover:bg-sky-400 hover:bg-opacity-20 p-2 rounded-md cursor-pointer ${isSelected ? 'bg-sky-400 bg-opacity-20' : ""}`
+            } 
+                onClick={() => setSelectedConversation(conversation)}
+            >
                 <div className='rounded-full w-10 h-10 bg-slate-300 flex items-center justify-center'>
                     <img className='rounded-full h-full' src={conversation.profilePicture} alt='user avatar' />
                 </div>

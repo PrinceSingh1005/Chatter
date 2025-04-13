@@ -5,10 +5,15 @@ import MessageContainer from "./Messages/MessageContainer";
 export default function ChatLayout() {
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-gray-50">
-      <ChatSidebar />
-      <MessageContainer />
-      {/* <Notifications /> */}
+    <div>
+      <div>
+        
+      </div>
+      <div className="flex flex-col md:flex-row h-screen bg-gray-50">
+        <ChatSidebar />
+        <MessageContainer />
+        {/* <Notifications /> */}
+      </div>
     </div>
   );
 }
