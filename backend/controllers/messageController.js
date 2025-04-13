@@ -37,23 +37,32 @@ export const sendMessage = async (req, res) => {
     }
 }
 
+// In getMessages controller, add proper message filtering
 export const getMessages = async (req, res) => {
     try {
-        const { id: userToChatId} = req.params;
+        const { id: userToChatId } = req.params;
         const senderId = req.user._id;
 
         const conversation = await Conversation.findOne({
             participants: { $all: [senderId, userToChatId] },
-        }).populate("messages");
+        }).populate({
+            path: 'messages',
+            match: {
+                $or: [
+                    { senderId: senderId, receiverId: userToChatId },
+                    { senderId: userToChatId, receiverId: senderId }
+                ]
+            },
+            options: { sort: { createdAt: 1 } } // Sort by creation time
+        });
 
         if (!conversation) {
-            return res.status(404).json([]);
+            return res.status(200).json([]); // Return empty array instead of 404
         }
-        const messages = conversation.messages;
 
-        res.status(200).json(messages);
+        res.status(200).json(conversation.messages);
     } catch (error) {
-        console.log("Error fetching messages:", error.message);
+        console.error("Error fetching messages:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
