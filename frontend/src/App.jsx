@@ -7,6 +7,7 @@ import ChatLayout from "./Components/ChatLayout.jsx";
 import SignUp from "./Pages/SignUp.jsx";
 import Settings from "./Pages/Settings.jsx";
 import ProfileSetup from "./Pages/ProfileSetup.jsx";
+import UserProfile from "./Components/Messages/UserProfile.jsx";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           element={<Navigate to={authUser ? "/" : "/login"} />}
         />
       </Routes>
+      {/* <Route path="/profile/:userId" element={<UserProfile />} /> */}
 
       <Toaster
         position="top-center"
