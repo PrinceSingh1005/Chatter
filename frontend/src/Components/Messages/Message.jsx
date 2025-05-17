@@ -12,6 +12,8 @@ const Message = ({message}) => {
     const senderName = fromMe ? 'You' : selectedConversation?.fullName || 'Unknown';
     const formattedTime = extractTime(message.createdAt);
 
+    const shakeClass = message.shouldShake ? "shake" : "";
+
     return (
         <div>
             <div className={`flex ${chatClassName}`}>
@@ -28,7 +30,7 @@ const Message = ({message}) => {
                     <div className="flex items-center gap-1 text-sm">
                         <span className="font-semibold">{senderName}</span>
                     </div>
-                    <div className={`px-4 py-2 rounded-b-2xl rounded-r-2xl ${bubbleBgColor} text-white w-fit`}>
+                    <div className={`px-4 py-2 rounded-b-2xl rounded-r-2xl ${bubbleBgColor} ${shakeClass} text-white w-fit`}>
                         {message.message}
                     </div>
                     <div className="text-xs text-gray-500 mt-1">{formattedTime}</div>
