@@ -5,6 +5,7 @@ import MessageInput from './MessageInput';
 import { TiMessages } from "react-icons/ti";
 import useConversation from '../../zustand/useConversation';
 import { IoIosArrowBack } from 'react-icons/io';
+import { useAuthContext } from '../../context/AuthContext';
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -72,13 +73,14 @@ const MessageContainer = () => {
 };
 
 const NoChatSelected = () => {
+  const {authUser} = useAuthContext();
   return (
     <div className='flex items-center justify-center w-full h-full bg-gray-50 dark:bg-gray-900'>
       <div className='px-4 text-center sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 font-semibold flex flex-col items-center gap-4'>
         <div className='p-4 rounded-full bg-blue-100 dark:bg-blue-900'>
           <TiMessages className='text-4xl md:text-6xl text-blue-500 dark:text-blue-300' />
         </div>
-        <p className='text-xl font-bold text-gray-800 dark:text-white'>Welcome to Chatter</p>
+        <p className='text-xl font-bold text-gray-800 dark:text-white'>Welcome to Chatter {authUser.fullName}</p>
         <p className='max-w-md text-gray-500 dark:text-gray-400'>
           Select a conversation or start a new chat to begin messaging
         </p>

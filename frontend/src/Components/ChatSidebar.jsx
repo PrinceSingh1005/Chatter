@@ -25,7 +25,7 @@ export default function ChatSidebar() {
     <div className="w-full md:w-1/4 bg-white border-r overflow-y-auto h-screen flex flex-col relative">
       {/* Header with app name and profile photo */}
       <div className="flex items-center justify-between p-4 border-b">
-        <h1 className="text-xl font-bold">Chatter</h1>
+        <img className="w-12 h-12 rounded-full object-cover cursor-pointer hover:border-blue-600 transition" src="chatter.png" alt="Logo" />
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
