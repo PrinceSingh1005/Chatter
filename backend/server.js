@@ -29,18 +29,22 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve static files from the frontend dist directory
-const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
-app.use(express.static(frontendDistPath));
+// const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
 
 // API Routes
-app.use("/api/auth", authRoutes); 
+app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// });
 
 // Start server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     connectToDb();
     console.log(`Server running on port ${PORT}`);
-    console.log(`Serving frontend from: ${frontendDistPath}`);
+    // console.log(`Serving frontend from: ${frontendDistPath}`);
 });
