@@ -37,9 +37,13 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith('/api')) {
+    return res.status(404).json({ message: 'API route not found' });
+  }
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
+
 
 
 // Start server
