@@ -16,15 +16,15 @@
 
 ### 💬 Chat Interface1
 
-![Interface1](./frontend/public/assets/Interface1.png)
+![Chat Interface1](./frontend/public/assets/Interface1.png)
 
 ### 💬 Chat Interface2
 
-![Interface2](./frontend/public/assets/Interface2.png)
+![Chat Interface2](./frontend/public/assets/Interface2.png)
 
 ### 📱 Real Time Chatting
 
-![Real Time Chatting](./frontend/public/assets/Interface3.png)
+![Real Time Chat View](./frontend/public/assets/Interface3.png)
 
 ---
 
@@ -33,8 +33,6 @@
 * 🔐 JWT-based **Authentication** (Login / Register)
 * 🧑‍🤝‍🧑 **One-on-One & Group Chats**
 * 💬 **Real-time messaging** using **Socket.io**
-* 🌗 **Dark / Light Mode Toggle**
-* 📍 Optionally fetch **user's current location**
 * 🧠 **Intelligent UI** with message status indicators
 * 📱 **Fully responsive design** for mobile, tablet, desktop
 
@@ -46,7 +44,7 @@
 
 * React.js
 * TailwindCSS
-* Context API or Redux (state management)
+* Context API
 
 ### Backend
 
@@ -123,6 +121,7 @@ REACT_APP_SOCKET_URL=http://localhost:5000
 This project is licensed under the **MIT License**.
 
 ---
+
 
 ## 👤 Author
 
