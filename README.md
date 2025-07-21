@@ -16,15 +16,15 @@
 
 ### 💬 Chat Interface1
 
-!\[Chat Interface1]\(./frontend/public/assets/Screenshot 2025-07-21 184559.png)
+![Chat Interface1](./frontend/public/assets/Interface1.png)
 
 ### 💬 Chat Interface2
 
-!\[Chat Interface2]\(./frontend/public/assets/Screenshot 2025-07-21 184612.png)
+![Chat Interface2](./frontend/public/assets/Interface2.png)
 
 ### 📱 Real Time Chatting
 
-!\[Real Time Chat View]\(./frontend/public/assets/Screenshot 2025-07-21 185705.png)
+![Real Time Chat View](./frontend/public/assets/Interface3.png)
 
 ---
 
