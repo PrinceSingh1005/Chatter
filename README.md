@@ -8,23 +8,23 @@
 
 ### 🔐 Login Page
 
-![Login](./Login.png)
+![Login](./frontend/public/assets/Login.png)
 
 ### 📝 Register Page
 
-![Register](./Register.png)
+![Register](./frontend/public/assets/Register.png)
 
 ### 💬 Chat Interface1
 
-!\[Chat Interface1]\(./Screenshot 2025-07-21 184559.png)
+!\[Chat Interface1]\(./frontend/public/assets/Screenshot 2025-07-21 184559.png)
 
 ### 💬 Chat Interface2
 
-!\[Chat Interface2]\(./Screenshot 2025-07-21 184612.png)
+!\[Chat Interface2]\(./frontend/public/assets/Screenshot 2025-07-21 184612.png)
 
 ### 📱 Real Time Chatting
 
-!\[Real Time Chat View]\(./Screenshot 2025-07-21 185705.png)
+!\[Real Time Chat View]\(./frontend/public/assets/Screenshot 2025-07-21 185705.png)
 
 ---
 
